@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DataTable } from "../../components/DataTable";
 import { ImageGallery } from "../../components/ImageGallery";
 import { photoDataSelector, changePaginate, getAllPhotos } from "../../reducers/photosReducer";
 

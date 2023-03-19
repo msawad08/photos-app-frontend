@@ -1,4 +1,3 @@
-import { FamilyRestroomTwoTone } from "@mui/icons-material";
 import { createAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store/store";
 
@@ -36,6 +35,12 @@ export const appSlice = createSlice({
         error: "",
       }
     },
+    setAppError: (state, action) => {
+      return {
+        ...state,
+        error: action.payload.error,
+      }
+    },
     loginFailed: (state, action) => {
       return {
         ...state,
@@ -61,7 +66,7 @@ export default appSlice.reducer;
 export const appDataSelector = (state: RootState) : AppStore => state.app;
 
 
-export const { loginSuccessful, loginFailed, closeError, logedOut } = appSlice.actions;
+export const { loginSuccessful, loginFailed, closeError, logedOut, setAppError } = appSlice.actions;
 
 export const login = createAction<Record<string,any>>(`APP/LOGIN`);
 export const verifyAuth = createAction<void>(`APP/VERIFY_AUTH`);

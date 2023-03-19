@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { loginFailed, loginSuccessful } from "../reducers/appReducer";
+import { logedOut, loginFailed, loginSuccessful, setAppError } from "../reducers/appReducer";
 import { verifyAuth, login as loginAction } from "../reducers/appReducer";
 import { ApiError, ApiResponse, isApiError, photosBackend } from "../services/api";
 
@@ -30,6 +30,13 @@ export function* login(action: PayloadAction<object>){
     }
 }
 
+export function* handleApiErrors(apiError: ApiError){
+    if(apiError.statusCode === 401){
+        yield put(logedOut({}))
+    }else{
+        yield put(setAppError ({error: "Data Fetch Failed"}))
+    }
+}
 
 function* rootIndex(){
     yield takeLatest(verifyAuth.type, verifyLogin);

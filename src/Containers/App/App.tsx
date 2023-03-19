@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import Login from "../Login/Login";
 import Dashboard from "../Dashboard/Dashboard";
@@ -25,7 +25,7 @@ export default function App() {
             <Login></Login>
           }
         />
-        <Route  path="/app" element={<Dashboard />} />
+        <Route  path="/app/*" element={<Dashboard />} />
       </Routes>
     </Router>
   );

@@ -47,4 +47,4 @@ export const { getAllPhotosSuccess, getAllPhotosFailure, changePaginate } =
   photoSlice.actions;
 
 export const getAllPhotos =
-  createAction<Record<string, any>>(`Photo/GET_ALL_PhotoS`);
+  createAction<Record<string, any>>(`PHOTO/GET_ALL_PHOTOS`);

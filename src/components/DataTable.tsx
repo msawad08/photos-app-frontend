@@ -1,5 +1,4 @@
 import {
-    Box,
     Paper,
     Table,
     TableBody,
@@ -24,7 +23,6 @@ import {
     numeric?: boolean;
     label: string;
   };
-  export type OrderDirection = "asc" | "desc";
   
   type PropTypes = {
     rowsPerPage?: number;
@@ -68,7 +66,7 @@ import {
               id="tableTitle"
               component="div"
             >
-              Nutrition
+              Users
             </Typography>
 
           </Toolbar>
