@@ -25,6 +25,7 @@ export function* login(action: PayloadAction<object>){
         }
         
     }else{
+        photosBackend.token = response.token;
         yield put(loginSuccessful(response))
 
     }

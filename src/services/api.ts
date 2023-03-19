@@ -20,15 +20,13 @@ export type ApiError = {
   statusCode: number;
 };
 
-export type ApiResponse = {
-  status: number;
-  data: any;
-};
+export type ApiResponse = Record<string,string>
 
 
 class API {
 
 
+  private _token?: string;
 
   private _basepath: string;
 
@@ -51,6 +49,9 @@ class API {
             credentials: 'include',
             headers: {
               "Content-Type": "application/json",
+              'Authorization':
+                ((this.token) &&
+                `Bearer ${ this.token}`) ?? "",
             },
             body: request?.data && JSON.stringify(request.data),
           });
@@ -84,6 +85,20 @@ class API {
     }
 
     return `${this._basepath}${path[0] === "/" ? "" : "/"}${path}${urlParams}`;
+  }
+
+  public set token(v: string | undefined) {
+    if (v !== undefined) {
+      this._token = v;
+      localStorage.setItem("backend-auth", v);
+    }
+  }
+
+  public get token(): string | undefined {
+    if (!this._token) {
+      this._token = localStorage.getItem("backend-auth") ?? undefined;
+    }
+    return this._token;
   }
 
 
